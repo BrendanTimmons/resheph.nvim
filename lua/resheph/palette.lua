@@ -1,0 +1,22 @@
+return {
+  dark_red     = "#a64a2e",
+  red          = "#d74200",
+  dark_orange  = "#f15f22",
+  orange       = "#e99f10",
+  brown        = "#98875f",
+  gold         = "#cfc041",
+  dark_green   = "#009403",
+  green        = "#00c420",
+  dark_blue    = "#0048bd",
+  blue         = "#0096ff",
+  dark_cyan    = "#40a4b9",
+  cyan         = "#77bfcf",
+  dark_magenta = "#b154cf",
+  magenta      = "#da5bd6",
+  dark_grey    = "#155352",
+  grey         = "#b1c9c3",
+  fg           = "#ffffff",
+  bg           = "#0f3b3a",
+  none         = "none",
+  debug        = "#ff0000"
+}
