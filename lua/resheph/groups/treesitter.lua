@@ -1,193 +1,141 @@
+local colors = require("resheph.palette")
+
 local M = {}
 
-M.highlights = function()
-  local color = require("resheph/palette")
+function M.apply()
+  local p = colors
 
-  return {
-    -- Reference: https://github.com/nvim-treesitter/nvim-treesitter/blob/master/CONTRIBUTING.md
-    -- Identifiers
-    ["@variable"] = { fg = color.orange },                -- Any variable name that does not have another highlight.
-    ["@variable.builtin"] = { fg = color.dark_red },      -- Variable names that are defined by the languages, like this or self.
-    ["@variable.parameter"] = { fg = color.dark_orange }, -- For parameters of a function.
-    ["@variable.member"] = { fg = color.blue },           -- For fields.
 
-    ["@constant"] = { link = "Constant" },                -- For constants
-    ["@constant.builtin"] = { fg = color.dark_red },      -- For constant that are built in the language: nil in Lua.
-    ["@constant.macro"] = { link = "Macro" },             -- For constants that are defined by macros: NULL in C.
+  -- Treesitter highlight groups using all 6 syntax colors
+  vim.api.nvim_set_hl(0, "@comment", { fg = p.comment, italic = true })
+  vim.api.nvim_set_hl(0, "@comment.error", { fg = p.color1, italic = true })
+  vim.api.nvim_set_hl(0, "@comment.warning", { fg = p.color2, italic = true })
+  vim.api.nvim_set_hl(0, "@comment.todo", { fg = p.color3, bold = true })
+  vim.api.nvim_set_hl(0, "@comment.hack", { fg = p.color2, bold = true })
+  vim.api.nvim_set_hl(0, "@comment.xxx", { fg = p.color6, bold = true })
 
-    ["@module"] = { fg = color.gold },                    -- For identifiers referring to modules and namespaces.
-    ["@label"] = { link = "Label" },                      -- For labels: label: in C and :label: in Lua.
+  -- Core syntax roles
+  vim.api.nvim_set_hl(0, "@constant", { fg = p.color3 })
+  vim.api.nvim_set_hl(0, "@constant.builtin", { fg = p.color3, bold = true })
+  vim.api.nvim_set_hl(0, "@constant.macro", { fg = p.color3 })
+  vim.api.nvim_set_hl(0, "@number", { fg = p.color3 })
+  vim.api.nvim_set_hl(0, "@boolean", { fg = p.color3 })
+  vim.api.nvim_set_hl(0, "@string", { fg = p.color5 })
+  vim.api.nvim_set_hl(0, "@string.documentation", { fg = p.color5 })
+  vim.api.nvim_set_hl(0, "@string.regex", { fg = p.color5 })
+  vim.api.nvim_set_hl(0, "@string.escape", { fg = p.color5 })
+  vim.api.nvim_set_hl(0, "@string.special", { fg = p.color5 })
+  vim.api.nvim_set_hl(0, "@character", { fg = p.color3 })
+  vim.api.nvim_set_hl(0, "@character.special", { fg = p.color2 })
 
-    -- Literals
-    ["@string"] = { link = "String" },                 -- For strings.
-    ["@string.documentation"] = { fg = color.teal },   -- For strings documenting code (e.g. Python docstrings).
-    ["@string.regexp"] = { fg = color.dark_red },      -- For regexes.
-    ["@string.escape"] = { fg = color.dark_orange },   -- For escape characters within a string.
-    ["@string.special"] = { link = "Special" },        -- other special strings (e.g. dates)
-    ["@string.special.path"] = { link = "Special" },   -- filenames
-    ["@string.special.symbol"] = { fg = color.brown }, -- symbols or atoms
-    ["@string.special.url"] = { fg = color.blue },     -- urls, links and emails
+  vim.api.nvim_set_hl(0, "@type", { fg = p.color4 })
+  vim.api.nvim_set_hl(0, "@type.builtin", { fg = p.color4, bold = true })
+  vim.api.nvim_set_hl(0, "@type.definition", { fg = p.color4 })
+  vim.api.nvim_set_hl(0, "@type.qualifier", { fg = p.color2 })
 
-    ["@character"] = { link = "Character" },           -- character literals
-    ["@character.special"] = { link = "SpecialChar" }, -- special characters (e.g. wildcards)
+  vim.api.nvim_set_hl(0, "@function", { fg = p.color6 })
+  vim.api.nvim_set_hl(0, "@function.builtin", { fg = p.color6, bold = true })
+  vim.api.nvim_set_hl(0, "@function.call", { fg = p.color6 })
+  vim.api.nvim_set_hl(0, "@function.macro", { fg = p.color2 })
+  vim.api.nvim_set_hl(0, "@method", { fg = p.color6 })
+  vim.api.nvim_set_hl(0, "@method.call", { fg = p.color6 })
+  vim.api.nvim_set_hl(0, "@constructor", { fg = p.color4 })
 
-    ["@boolean"] = { link = "Boolean" },               -- For booleans.
-    ["@number"] = { link = "Number" },                 -- For all numbers
-    ["@number.float"] = { link = "Float" },            -- For floats.
+  vim.api.nvim_set_hl(0, "@variable", { fg = p.fg1 })
+  vim.api.nvim_set_hl(0, "@variable.builtin", { fg = p.color1, italic = true })
+  vim.api.nvim_set_hl(0, "@variable.parameter", { fg = p.color5, italic = true })
+  vim.api.nvim_set_hl(0, "@variable.member", { fg = p.color4 })
 
-    -- Types
-    ["@type"] = { link = "Type" },            -- For types.
-    ["@type.builtin"] = { fg = color.gold },  -- For builtin types.
-    ["@type.definition"] = { link = "Type" }, -- type definitions (e.g. `typedef` in C)
+  vim.api.nvim_set_hl(0, "@property", { fg = p.color4 })
+  vim.api.nvim_set_hl(0, "@field", { fg = p.color4 })
 
-    ["@attribute"] = { link = "Constant" },   -- attribute annotations (e.g. Python decorators)
-    ["@property"] = { fg = color.blue },      -- Same as TSField.
+  vim.api.nvim_set_hl(0, "@keyword", { fg = p.color2 })
+  vim.api.nvim_set_hl(0, "@keyword.function", { fg = p.color2 })
+  vim.api.nvim_set_hl(0, "@keyword.operator", { fg = p.color2 })
+  vim.api.nvim_set_hl(0, "@keyword.return", { fg = p.color2, bold = true })
+  vim.api.nvim_set_hl(0, "@keyword.import", { fg = p.color2 })
+  vim.api.nvim_set_hl(0, "@keyword.conditional", { fg = p.color2 })
+  vim.api.nvim_set_hl(0, "@keyword.repeat", { fg = p.color2 })
+  vim.api.nvim_set_hl(0, "@keyword.exception", { fg = p.color1 })
+  vim.api.nvim_set_hl(0, "@keyword.directive", { fg = p.color2 })
+  vim.api.nvim_set_hl(0, "@keyword.directive.define", { fg = p.color2 })
 
-    -- Functions
-    ["@function"] = { link = "Function" },             -- For function (calls and definitions).
-    ["@function.builtin"] = { fg = color.blue },       -- For builtin functions: table.insert in Lua.
-    ["@function.call"] = { link = "Function" },        -- function calls
-    ["@function.macro"] = { fg = color.green },        -- For macro defined functions (calls and definitions): each macro_rules in Rust.
+  vim.api.nvim_set_hl(0, "@operator", { fg = p.color2 })
+  vim.api.nvim_set_hl(0, "@punctuation", { fg = p.fg1 })
+  vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = p.fg1 })
+  vim.api.nvim_set_hl(0, "@punctuation.bracket", { fg = p.fg1 })
+  vim.api.nvim_set_hl(0, "@punctuation.special", { fg = p.color6 })
 
-    ["@function.method"] = { link = "Function" },      -- For method definitions.
-    ["@function.method.call"] = { link = "Function" }, -- For method calls.
+  -- Markup (for markdown, etc.)
+  vim.api.nvim_set_hl(0, "@markup.strong", { fg = p.fg1, bold = true })
+  vim.api.nvim_set_hl(0, "@markup.italic", { fg = p.fg1, italic = true })
+  vim.api.nvim_set_hl(0, "@markup.strikethrough", { fg = p.uic1, strikethrough = true })
+  vim.api.nvim_set_hl(0, "@markup.underline", { fg = p.fg1, underline = true })
+  vim.api.nvim_set_hl(0, "@markup.heading", { fg = p.fg0, bold = true })
+  vim.api.nvim_set_hl(0, "@markup.quote", { fg = p.uic1, italic = true })
+  vim.api.nvim_set_hl(0, "@markup.math", { fg = p.color3 })
+  vim.api.nvim_set_hl(0, "@markup.link", { fg = p.color4, underline = true })
+  vim.api.nvim_set_hl(0, "@markup.link.label", { fg = p.color5 })
+  vim.api.nvim_set_hl(0, "@markup.link.url", { fg = p.color4, underline = true })
+  vim.api.nvim_set_hl(0, "@markup.raw", { fg = p.color3 })
+  vim.api.nvim_set_hl(0, "@markup.raw.block", { fg = p.color3 })
+  vim.api.nvim_set_hl(0, "@markup.list", { fg = p.color6 })
+  vim.api.nvim_set_hl(0, "@markup.list.checked", { fg = p.color2 })
+  vim.api.nvim_set_hl(0, "@markup.list.unchecked", { fg = p.color2 })
 
-    ["@constructor"] = { fg = color.gold },            -- For constructor calls and definitions: = { } in Lua, and Java constructors.
-    ["@operator"] = { link = "Operator" },             -- For any operator: +, but also -> and * in C.
+  -- Tags (HTML/XML: <div>, <Header>, <p>, <MyComponent>)
+  vim.api.nvim_set_hl(0, "@tag", { fg = p.color2 })           -- div, header, main, MyComponent
+  vim.api.nvim_set_hl(0, "@tag.attribute", { fg = p.color5 }) -- className, id, href, onClick
+  vim.api.nvim_set_hl(0, "@tag.delimiter", { fg = p.uic1 })   -- < > </ />
 
-    -- Keywords
-    ["@keyword"] = { link = "Keyword" },                      -- For keywords that don't fall in previous categories.
-    ["@keyword.modifier"] = { link = "Keyword" },             -- For keywords modifying other constructs (e.g. `const`, `static`, `public`)
-    ["@keyword.type"] = { link = "Keyword" },                 -- For keywords describing composite types (e.g. `struct`, `enum`)
-    ["@keyword.coroutine"] = { link = "Keyword" },            -- For keywords related to coroutines (e.g. `go` in Go, `async/await` in Python)
-    ["@keyword.function"] = { fg = color.dark_orange },       -- For keywords used to define a function.
-    ["@keyword.operator"] = { fg = color.brown },             -- For new keyword operator
-    ["@keyword.import"] = { link = "Include" },               -- For includes: #include in C, use or extern crate in Rust, or require in Lua.
-    ["@keyword.repeat"] = { link = "Repeat" },                -- For keywords related to loops.
-    ["@keyword.return"] = { fg = color.green },
-    ["@keyword.debug"] = { link = "Exception" },              -- For keywords related to debugging
-    ["@keyword.exception"] = { link = "Exception" },          -- For exception related keywords.
+  -- Attributes (@decorators, [attributes], #[derive])
+  vim.api.nvim_set_hl(0, "@attribute", { fg = p.color3 }) -- @Component, @override, [Serializable]
 
-    ["@keyword.conditional"] = { link = "Conditional" },      -- For keywords related to conditionnals.
-    ["@keyword.conditional.ternary"] = { link = "Operator" }, -- For ternary operators (e.g. `?` / `:`)
+  -- Labels (goto labels, break/continue labels)
+  vim.api.nvim_set_hl(0, "@label", { fg = p.color6 }) -- label:, break label
 
-    ["@keyword.directive"] = { link = "PreProc" },            -- various preprocessor directives & shebangs
-    ["@keyword.directive.define"] = { link = "Define" },      -- preprocessor definition directives
-    ["@keyword.directive.css"] = { link = "Keyword" },        -- CSS at-rules: https://developer.mozilla.org/en-US/docs/Web/CSS/At-rule.
-    -- JS & derivative
-    ["@keyword.export"] = { fg = color.grey },
+  -- Namespace (std::, React., namespace MyNamespace)
+  vim.api.nvim_set_hl(0, "@namespace", { fg = p.color5 }) -- std, React, System
+  vim.api.nvim_set_hl(0, "@module", { fg = p.color5 })    -- import * from 'module'
 
-    -- Punctuation
-    ["@punctuation.delimiter"] = { link = "Delimiter" }, -- For delimiters (e.g. `;` / `.` / `,`).
-    ["@punctuation.bracket"] = { fg = color.grey },      -- For brackets and parenthesis.
-    ["@punctuation.special"] = { link = "Special" },     -- For special punctuation that does not fall in the categories before (e.g. `{}` in string interpolation).
+  -- Preproc
+  vim.api.nvim_set_hl(0, "@preproc", { fg = p.color6 })
 
-    -- Comment
-    ["@comment"] = { link = "Comment" },
-    ["@comment.documentation"] = { link = "Comment" }, -- For comments documenting code
+  -- Include
+  vim.api.nvim_set_hl(0, "@include", { fg = p.color6 })
 
-    ["@comment.error"] = { fg = color.base, bg = color.red },
-    ["@comment.warning"] = { fg = color.base, bg = color.gold },
-    ["@comment.hint"] = { fg = color.base, bg = color.blue },
-    ["@comment.todo"] = { fg = color.base, bg = color.brown },
-    ["@comment.note"] = { fg = color.base, bg = color.rosewater },
+  -- Define
+  vim.api.nvim_set_hl(0, "@define", { fg = p.color6 })
 
-    -- Markup
-    ["@markup"] = { fg = color.cyan },                    -- For strings considerated text in a markup language.
-    ["@markup.strong"] = { bold = true },                 -- bold
-    ["@markup.italic"] = { italic = true },               -- italic
-    ["@markup.strikethrough"] = { fg = color.grey },      -- strikethrough text
-    ["@markup.underline"] = { link = "Underlined" },      -- underlined text
+  -- Conditional
+  vim.api.nvim_set_hl(0, "@conditional", { fg = p.color6 })
 
-    ["@markup.heading"] = { fg = color.blue },            -- titles like: # Example
+  -- Repeat
+  vim.api.nvim_set_hl(0, "@repeat", { fg = p.color6 })
 
-    ["@markup.math"] = { fg = color.blue },               -- math environments (e.g. `$ ... $` in LaTeX)
-    ["@markup.quote"] = { fg = color.dark_orange },       -- block quotes
-    ["@markup.environment"] = { fg = color.dark_orange }, -- text environments of markup languages
-    ["@markup.environment.name"] = { fg = color.blue },   -- text indicating the type of an environment
+  -- Exception
+  vim.api.nvim_set_hl(0, "@exception", { fg = p.color1 })
 
-    ["@markup.link"] = { fg = color.green },              -- text references, footnotes, citations, etc.
-    ["@markup.link.label"] = { fg = color.debug },        -- link, reference descriptions
-    ["@markup.link.url"] = { fg = color.blue },           -- urls, links and emails
+  -- Special characters
+  vim.api.nvim_set_hl(0, "@character.printf", { fg = p.color2 })
 
-    ["@markup.raw"] = { fg = color.gold },                -- used for inline code in markdown and for doc in python (""")
+  -- Diff (git diff colors: +added, -removed, ~modified)
+  vim.api.nvim_set_hl(0, "@diff.plus", { fg = p.color2 })  -- + added lines
+  vim.api.nvim_set_hl(0, "@diff.minus", { fg = p.color1 }) -- - removed lines
+  vim.api.nvim_set_hl(0, "@diff.delta", { fg = p.color3 }) -- ~ modified lines
 
-    ["@markup.list"] = { fg = color.teal },
-    ["@markup.list.checked"] = { fg = color.green },  -- todo notes
-    ["@markup.list.unchecked"] = { fg = color.grey }, -- todo notes
+  -- Language-specific
+  -- Lua
+  vim.api.nvim_set_hl(0, "@function.builtin.lua", { fg = p.fg2, bold = true })
+  vim.api.nvim_set_hl(0, "@variable.builtin.lua", { fg = p.color1, italic = true })
 
-    -- Diff
-    ["@diff.plus"] = { link = "diffAdded" },    -- added text (for diff files)
-    ["@diff.minus"] = { link = "diffRemoved" }, -- deleted text (for diff files)
-    ["@diff.delta"] = { link = "diffChanged" }, -- deleted text (for diff files)
+  -- Python
+  vim.api.nvim_set_hl(0, "@function.builtin.python", { fg = p.fg2, bold = true })
+  vim.api.nvim_set_hl(0, "@variable.builtin.python", { fg = p.color1, italic = true })
 
-    -- Tags
-    ["@tag"] = { fg = color.blue },                          -- Tags like HTML tag names.
-    ["@tag.builtin"] = { fg = color.blue },                  -- JSX tag names.
-    ["@tag.attribute"] = { fg = color.gold, italic = true }, -- XML/HTML attributes (foo in foo="bar").
-    ["@tag.delimiter"] = { fg = color.dark_cyan },           -- Tag delimiter like < > /
-
-    -- Misc
-    ["@error"] = { link = "Error" },
-
-    -- Language specific:
-    -- bash
-    ["@function.builtin.bash"] = { fg = color.red },
-
-    -- markdown
-    ["@markup.heading.1.markdown"] = { link = "rainbow1" },
-    ["@markup.heading.2.markdown"] = { link = "rainbow2" },
-    ["@markup.heading.3.markdown"] = { link = "rainbow3" },
-    ["@markup.heading.4.markdown"] = { link = "rainbow4" },
-    ["@markup.heading.5.markdown"] = { link = "rainbow5" },
-    ["@markup.heading.6.markdown"] = { link = "rainbow6" },
-
-    -- java
-    ["@constant.java"] = { fg = color.teal },
-
-    -- css
-    ["@property.css"] = { fg = color.blue },
-    ["@property.id.css"] = { fg = color.gold },
-    ["@property.class.css"] = { fg = color.gold },
-    ["@type.css"] = { fg = color.debug },
-    ["@type.tag.css"] = { fg = color.blue },
-    ["@string.plain.css"] = { fg = color.debug },
-    ["@number.css"] = { fg = color.debug },
-
-    -- toml
-    ["@property.toml"] = { fg = color.blue }, -- Differentiates between string and properties
-
-    -- json
-    ["@label.json"] = { fg = color.blue }, -- For labels: label: in C and :label: in Lua.
-
-    -- lua
-    ["@constructor.lua"] = { link = "@punctuation.bracket" }, -- For constructor calls and definitions: = { } in Lua.
-
-    -- yaml
-    ["@variable.member.yaml"] = { fg = color.blue }, -- For fields.
-    ["@variable.member.nix"] = { fg = color.blue },
-
-    -- Ruby
-    ["@string.special.symbol.ruby"] = { fg = color.brown },
-
-    -- PHP
-    ["@function.method.php"] = { link = "Function" },
-    ["@function.method.call.php"] = { link = "Function" },
-
-    -- C/CPP
-    ["@property.cpp"] = { fg = color.debug },
-
-    -- gitcommit
-    ["@comment.warning.gitcommit"] = { fg = color.gold },
-
-    -- gitignore
-    ["@string.special.path.gitignore"] = { fg = color.debug },
-
-    -- Misc
-    gitcommitSummary = { fg = color.gold },
-    zshKSHFunction = { link = "Function" },
-
-  }
+  -- JavaScript/TypeScript
+  vim.api.nvim_set_hl(0, "@function.builtin.javascript", { fg = p.fg2, bold = true })
+  vim.api.nvim_set_hl(0, "@variable.builtin.javascript", { fg = p.color1, italic = true })
 end
 
 return M
