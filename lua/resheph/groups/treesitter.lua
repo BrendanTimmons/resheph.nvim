@@ -5,7 +5,6 @@ local M = {}
 function M.apply()
   local p = colors.palette
 
-
   -- Treesitter highlight groups using all 6 syntax colors
   vim.api.nvim_set_hl(0, "@comment", { fg = p.comment, italic = true })
   vim.api.nvim_set_hl(0, "@comment.error", { fg = p.color1, italic = true })
@@ -85,6 +84,7 @@ function M.apply()
 
   -- Tags (HTML/XML: <div>, <Header>, <p>, <MyComponent>)
   vim.api.nvim_set_hl(0, "@tag", { fg = p.color2 })           -- div, header, main, MyComponent
+  vim.api.nvim_set_hl(0, "@tag.builtin", { fg = p.color2 })   -- div, header, main, MyComponent
   vim.api.nvim_set_hl(0, "@tag.attribute", { fg = p.color5 }) -- className, id, href, onClick
   vim.api.nvim_set_hl(0, "@tag.delimiter", { fg = p.uic1 })   -- < > </ />
 

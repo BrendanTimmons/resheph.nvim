@@ -1,74 +1,84 @@
+local colors = require("resheph.palette")
+
 local M = {}
 
-M.highlights = function()
-  local color = require("resheph.palette")
+function M.apply()
+  local p    = colors.palette
 
-  -- TODO use new color variables
+  local err  = p.color1
+  local warn = p.comment
+  local info = p.comment
+  local hint = p.comment
+  local ok   = p.color6
 
-  local error = color.red
-  local warning = color.dark_orange
-  local info = color.dark_cyan
-  local hint = color.cyan
-  local ok = color.green
+  -- LSP reference highlights
+  vim.api.nvim_set_hl(0, "LspReferenceText", { bg = p.selbg, fg = p.selfg })
+  vim.api.nvim_set_hl(0, "LspReferenceRead", { bg = p.selbg, fg = p.selfg })
+  vim.api.nvim_set_hl(0, "LspReferenceWrite", { bg = p.selbg, fg = p.selfg })
 
-  return {
-    LspReferenceText = { bg = color.cyan, fg = color.bg },  -- used for highlighting "text" references
-    LspReferenceRead = { bg = color.cyan, fg = color.bg },  -- used for highlighting "read" references
-    LspReferenceWrite = { bg = color.cyan, fg = color.bg }, -- used for highlighting "write" references
+  -- Virtual text
+  vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { bg = p.none, fg = err })
+  vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { bg = p.none, fg = warn })
+  vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { bg = p.none, fg = info })
+  vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { bg = p.none, fg = hint })
+  vim.api.nvim_set_hl(0, "DiagnosticVirtualTextOk", { bg = p.none, fg = ok })
 
-    DiagnosticVirtualTextError = { bg = color.none, fg = color.red, },
-    DiagnosticVirtualTextWarn = { bg = color.none, fg = color.dark_orange, },
-    DiagnosticVirtualTextInfo = { bg = color.none, fg = color.dark_cyan, },
-    DiagnosticVirtualTextHint = { bg = color.none, fg = color.grey, },
-    DiagnosticVirtualTextOk = { bg = color.none, fg = color.green, }, -- Used as the mantle highlight group. Other Diagnostic highlights link to this by default
+  -- Diagnostic base groups
+  vim.api.nvim_set_hl(0, "DiagnosticError", { bg = p.none, fg = err })
+  vim.api.nvim_set_hl(0, "DiagnosticWarn", { bg = p.none, fg = warn })
+  vim.api.nvim_set_hl(0, "DiagnosticInfo", { bg = p.none, fg = info })
+  vim.api.nvim_set_hl(0, "DiagnosticHint", { bg = p.none, fg = hint })
+  vim.api.nvim_set_hl(0, "DiagnosticOk", { bg = p.none, fg = ok })
 
-    DiagnosticError = { bg = color.none, fg = error },                -- Used as the mantle highlight group. Other Diagnostic highlights link to this by default
-    DiagnosticWarn = { bg = color.none, fg = warning },               -- Used as the mantle highlight group. Other Diagnostic highlights link to this by default
-    DiagnosticInfo = { bg = color.none, fg = info },                  -- Used as the mantle highlight group. Other Diagnostic highlights link to this by default
-    DiagnosticHint = { bg = color.none, fg = hint },                  -- Used as the mantle highlight group. Other Diagnostic highlights link to this by default
-    DiagnosticOk = { bg = color.none, fg = ok },                      -- Used as the mantle highlight group. Other Diagnostic highlights link to this by default
+  -- Underline
+  vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { sp = err, undercurl = true })
+  vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { sp = warn, undercurl = true })
+  vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { sp = info, undercurl = true })
+  vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { sp = hint, undercurl = true })
+  vim.api.nvim_set_hl(0, "DiagnosticUnderlineOk", { sp = ok })
 
-    DiagnosticUnderlineError = { sp = error },                        -- Used to underline "Error" diagnostics
-    DiagnosticUnderlineWarn = { sp = warning },                       -- Used to underline "Warn" diagnostics
-    DiagnosticUnderlineInfo = { sp = info },                          -- Used to underline "Info" diagnostics
-    DiagnosticUnderlineHint = { sp = hint },                          -- Used to underline "Hint" diagnostics
-    DiagnosticUnderlineOk = { sp = ok },                              -- Used to underline "Ok" diagnostics
+  -- Floating diagnostics
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingError", { fg = err })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { fg = warn })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingInfo", { fg = info })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { fg = hint })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatingOk", { fg = ok })
 
-    DiagnosticFloatingError = { fg = error },                         -- Used to color "Error" diagnostic messages in diagnostics float
-    DiagnosticFloatingWarn = { fg = warning },                        -- Used to color "Warn" diagnostic messages in diagnostics float
-    DiagnosticFloatingInfo = { fg = info },                           -- Used to color "Info" diagnostic messages in diagnostics float
-    DiagnosticFloatingHint = { fg = hint },                           -- Used to color "Hint" diagnostic messages in diagnostics float
-    DiagnosticFloatingOk = { fg = ok },                               -- Used to color "Ok" diagnostic messages in diagnostics float
+  -- Sign column
+  vim.api.nvim_set_hl(0, "DiagnosticSignError", { fg = err })
+  vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { fg = warn })
+  vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { fg = info })
+  vim.api.nvim_set_hl(0, "DiagnosticSignHint", { fg = hint })
+  vim.api.nvim_set_hl(0, "DiagnosticSignOk", { fg = ok })
 
-    DiagnosticSignError = { fg = error },                             -- Used for "Error" signs in sign column
-    DiagnosticSignWarn = { fg = warning },                            -- Used for "Warn" signs in sign column
-    DiagnosticSignInfo = { fg = info },                               -- Used for "Info" signs in sign column
-    DiagnosticSignHint = { fg = hint },                               -- Used for "Hint" signs in sign column
-    DiagnosticSignOk = { fg = ok },                                   -- Used for "Ok" signs in sign column
+  -- Legacy LSP diagnostic groups
+  vim.api.nvim_set_hl(0, "LspDiagnosticsDefaultError", { fg = err })
+  vim.api.nvim_set_hl(0, "LspDiagnosticsDefaultWarning", { fg = warn })
+  vim.api.nvim_set_hl(0, "LspDiagnosticsDefaultInformation", { fg = info })
+  vim.api.nvim_set_hl(0, "LspDiagnosticsDefaultHint", { fg = hint })
 
-    LspDiagnosticsDefaultError = { fg = error },                      -- Used as the mantle highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    LspDiagnosticsDefaultWarning = { fg = warning },                  -- Used as the mantle highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    LspDiagnosticsDefaultInformation = { fg = info },                 -- Used as the mantle highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    LspDiagnosticsDefaultHint = { fg = hint },                        -- Used as the mantle highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    LspSignatureActiveParameter = { bg = color.grey },
+  vim.api.nvim_set_hl(0, "LspSignatureActiveParameter", { bg = p.comment })
 
-    LspDiagnosticsError = { fg = error },
-    LspDiagnosticsWarning = { fg = warning },
-    LspDiagnosticsInformation = { fg = info },
-    LspDiagnosticsHint = { fg = hint },
-    LspDiagnosticsVirtualTextError = { fg = error },           -- Used for "Error" diagnostic virtual text
-    LspDiagnosticsVirtualTextWarning = { fg = warning },       -- Used for "Warning" diagnostic virtual text
-    LspDiagnosticsVirtualTextInformation = { fg = info },      -- Used for "Information" diagnostic virtual text
-    LspDiagnosticsVirtualTextHint = { fg = hint },             -- Used for "Hint" diagnostic virtual text
-    LspDiagnosticsUnderlineError = { sp = error },             -- Used to underline "Error" diagnostics
-    LspDiagnosticsUnderlineWarning = { sp = warning },         -- Used to underline "Warning" diagnostics
-    LspDiagnosticsUnderlineInformation = { sp = info },        -- Used to underline "Information" diagnostics
-    LspDiagnosticsUnderlineHint = { sp = hint },               -- Used to underline "Hint" diagnostics
-    LspCodeLens = { fg = color.overlay0 },                     -- virtual text of the codelens
-    LspCodeLensSeparator = { link = "LspCodeLens" },           -- virtual text of the codelens separators
-    LspInlayHint = { fg = color.grey, bg = color.dark_grey, }, -- virtual text of the inlay hints
-    LspInfoBorder = { link = "FloatBorder" },                  -- LspInfo border
-  }
+  vim.api.nvim_set_hl(0, "LspDiagnosticsError", { fg = err })
+  vim.api.nvim_set_hl(0, "LspDiagnosticsWarning", { fg = warn })
+  vim.api.nvim_set_hl(0, "LspDiagnosticsInformation", { fg = info })
+  vim.api.nvim_set_hl(0, "LspDiagnosticsHint", { fg = hint })
+
+  vim.api.nvim_set_hl(0, "LspDiagnosticsVirtualTextError", { fg = err })
+  vim.api.nvim_set_hl(0, "LspDiagnosticsVirtualTextWarning", { fg = warn })
+  vim.api.nvim_set_hl(0, "LspDiagnosticsVirtualTextInformation", { fg = info })
+  vim.api.nvim_set_hl(0, "LspDiagnosticsVirtualTextHint", { fg = hint })
+
+  vim.api.nvim_set_hl(0, "LspDiagnosticsUnderlineError", { sp = err })
+  vim.api.nvim_set_hl(0, "LspDiagnosticsUnderlineWarning", { sp = warn })
+  vim.api.nvim_set_hl(0, "LspDiagnosticsUnderlineInformation", { sp = info })
+  vim.api.nvim_set_hl(0, "LspDiagnosticsUnderlineHint", { sp = hint })
+
+  -- LSP misc
+  vim.api.nvim_set_hl(0, "LspCodeLens", { fg = p.color1 })
+  vim.api.nvim_set_hl(0, "LspCodeLensSeparator", { link = "LspCodeLens" })
+  vim.api.nvim_set_hl(0, "LspInlayHint", { fg = hint, bg = p.none })
+  vim.api.nvim_set_hl(0, "LspInfoBorder", { link = "FloatBorder" })
 end
 
 return M

@@ -5,6 +5,10 @@ function M.setup()
   require("resheph.groups.editor").apply()
 end
 
+function M.snacks()
+  require("resheph.groups.snacks").apply()
+end
+
 function M.treesitter()
   require("nvim-treesitter.configs").setup({
     highlight = { enable = true },
