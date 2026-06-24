@@ -1,7 +1,9 @@
 local M = {}
 
 M.highlights = function()
-  local color = require("resheph/palette")
+  local color = require("resheph.palette")
+
+  -- TODO use new color variables
 
   local error = color.red
   local warning = color.dark_orange

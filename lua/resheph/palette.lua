@@ -1,7 +1,7 @@
 local M = {}
 
 M.palette = {
-  -- qud color palette
+  -- qud color reference
   dark_red     = "#a64a2e",
   red          = "#d74200",
   dark_orange  = "#f15f22",

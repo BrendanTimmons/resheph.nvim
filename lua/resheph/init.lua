@@ -1,17 +1,14 @@
 local M = {}
 
-function M.setup()
-  local groups = {
-    require('resheph/groups/editor'),
-    require('resheph/groups/treesitter'),
-    require('resheph/groups/diagnostics')
-  }
+function M.colorscheme()
+  -- Load the main colors
+  require("themery.colors").apply()
+end
 
-  for _, highlight_group in ipairs(groups) do
-    for group, opts in pairs(highlight_group.highlights()) do
-      vim.api.nvim_set_hl(0, group, opts)
-    end
-  end
+function M.treesitter()
+  require("nvim-treesitter.configs").setup({
+    highlight = { enable = true },
+  })
 end
 
 return M
