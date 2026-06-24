@@ -2,7 +2,7 @@ local M = {}
 
 function M.colorscheme()
   -- Load the main colors
-  require("themery.colors").apply()
+  require("resheph.colors").apply()
 end
 
 function M.treesitter()
