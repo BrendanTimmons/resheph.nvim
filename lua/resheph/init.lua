@@ -1,8 +1,8 @@
 local M = {}
 
-function M.colorscheme()
+function M.setup()
   -- Load the main colors
-  require("resheph.colors").apply()
+  require("resheph.groups.editor").apply()
 end
 
 function M.treesitter()

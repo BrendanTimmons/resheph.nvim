@@ -3,14 +3,14 @@ local colors = require("resheph.palette")
 local M = {}
 
 function M.apply()
-  local p = colors
+  local p = colors.palette
 
   vim.cmd("highlight clear")
   if vim.fn.exists("syntax_on") then
     vim.cmd("syntax reset")
   end
   vim.o.background = "dark"
-  vim.g.colors_name = "themery"
+  vim.g.colors_name = "resheph"
 
   -- Basic highlight groups
 
@@ -64,7 +64,7 @@ function M.apply()
   vim.api.nvim_set_hl(0, "ModeMsg", { fg = p.fg2 })                    -- Mode messages
 
   -- Apply Treesitter theming
-  require("themery.treesitter").apply()
+  require("resheph.groups.treesitter").apply()
 end
 
 return M

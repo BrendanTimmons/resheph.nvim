@@ -3,7 +3,7 @@ local colors = require("resheph.palette")
 local M = {}
 
 function M.apply()
-  local p = colors
+  local p = colors.palette
 
 
   -- Treesitter highlight groups using all 6 syntax colors
