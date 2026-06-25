@@ -73,6 +73,7 @@ function M.apply()
   require("resheph.groups.treesitter").apply()
   require("resheph.groups.diagnostics").apply()
   require("resheph.groups.snacks").apply()
+  require("resheph.groups.whichkey").apply()
 end
 
 return M

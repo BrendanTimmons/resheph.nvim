@@ -9,6 +9,10 @@ function M.snacks()
   require("resheph.groups.snacks").apply()
 end
 
+function M.whichkey()
+  require("resheph.groups.whichkey").apply()
+end
+
 function M.treesitter()
   require("nvim-treesitter.configs").setup({
     highlight = { enable = true },
