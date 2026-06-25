@@ -59,7 +59,7 @@ function M.apply()
   vim.api.nvim_set_hl(0, "PmenuSel", { fg = p.color4, bg = p.bg2 }) -- Selected popup item
   vim.api.nvim_set_hl(0, "PmenuSbar", { bg = p.color1 })            -- Popup scrollbar
   vim.api.nvim_set_hl(0, "PmenuThumb", { bg = p.fg3 })              -- Popup scrollbar thumb
-  vim.api.nvim_set_hl(0, "PmenuBorder", { fg = p.color1 })
+  vim.api.nvim_set_hl(0, "PmenuBorder", { link = "FloatBorder" })
 
   -- Error and warning highlights
   vim.api.nvim_set_hl(0, "Error", { fg = p.color1, bold = true })      -- Error text
