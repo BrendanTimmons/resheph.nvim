@@ -13,7 +13,7 @@ function M.apply()
   vim.g.colors_name = "resheph"
 
   -- Basic highlight groups
-  vim.api.nvim_set_hl(0, "Normal", { fg = p.fg1, bg = p.bg1 })
+  vim.api.nvim_set_hl(0, "Normal", { fg = p.fg1, bg = p.none })
   vim.api.nvim_set_hl(0, "CursorLine", { bg = p.bg2 })
   vim.api.nvim_set_hl(0, "Cursor", { fg = p.bg1, bg = p.color2 })
   vim.api.nvim_set_hl(0, "CursorColumn", { bg = p.bg2 })
@@ -63,7 +63,7 @@ function M.apply()
   vim.api.nvim_set_hl(0, "ModeMsg", { fg = p.fg2 })                    -- Mode messages
 
   -- Floats
-  vim.api.nvim_set_hl(0, "NormalFloat", { bg = p.bg1, fg = p.fg1 })
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = p.none, fg = p.fg1 })
   vim.api.nvim_set_hl(0, "FloatBorder", { bg = p.none, fg = p.bg2 })
   vim.api.nvim_set_hl(0, "FloatTitle", { bg = p.none, fg = p.bg2 })
   vim.api.nvim_set_hl(0, "FloatShadow", {})
