@@ -14,7 +14,7 @@ function M.apply()
 
   -- Basic highlight groups
   vim.api.nvim_set_hl(0, "Normal", { fg = p.fg1, bg = p.none })
-  vim.api.nvim_set_hl(0, "CursorLine", { bg = p.bg2 })
+  vim.api.nvim_set_hl(0, "CursorLine", { bg = p.none })
   vim.api.nvim_set_hl(0, "Cursor", { fg = p.bg1, bg = p.fg2 })
   vim.api.nvim_set_hl(0, "CursorColumn", { bg = p.bg2 })
   vim.api.nvim_set_hl(0, "SignColumn", { fg = p.comment })
