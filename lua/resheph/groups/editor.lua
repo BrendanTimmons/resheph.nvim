@@ -69,8 +69,8 @@ function M.apply()
 
   -- Floats
   vim.api.nvim_set_hl(0, "NormalFloat", { bg = p.none, fg = p.fg1 })
-  vim.api.nvim_set_hl(0, "FloatBorder", { bg = p.none, fg = p.bg2 })
-  vim.api.nvim_set_hl(0, "FloatTitle", { bg = p.none, fg = p.bg2 })
+  vim.api.nvim_set_hl(0, "FloatBorder", { bg = p.none, fg = p.bg3 })
+  vim.api.nvim_set_hl(0, "FloatTitle", { bg = p.none, fg = p.bg3 })
   vim.api.nvim_set_hl(0, "FloatShadow", {})
   vim.api.nvim_set_hl(0, "FloatShadowThrough", {})
 
