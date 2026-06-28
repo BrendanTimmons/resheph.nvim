@@ -78,6 +78,10 @@ function M.apply()
   -- Files
   vim.api.nvim_set_hl(0, "Directory", { fg = p.c07 })
 
+  -- Git
+  vim.api.nvim_set_hl(0, "Removed", { fg = p.c09 })
+  vim.api.nvim_set_hl(0, "Added", { fg = p.c10 })
+
   -- ???
   vim.api.nvim_set_hl(0, "Conceal", { fg = p.debug })
   vim.api.nvim_set_hl(0, "Whitespace", { fg = p.debug })
