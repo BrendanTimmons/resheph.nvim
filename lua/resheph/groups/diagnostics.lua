@@ -5,11 +5,11 @@ local M = {}
 function M.apply()
   local p    = colors.palette
 
-  local err  = p.color1
-  local warn = p.comment
-  local info = p.comment
-  local hint = p.comment
-  local ok   = p.color6
+  local err  = p.c09
+  local warn = p.c03
+  local info = p.c08
+  local hint = p.c08
+  local ok   = p.c02
 
   -- LSP reference highlights
   vim.api.nvim_set_hl(0, "LspReferenceText", { bg = p.selbg, fg = p.selfg })
@@ -75,7 +75,7 @@ function M.apply()
   vim.api.nvim_set_hl(0, "LspDiagnosticsUnderlineHint", { sp = hint })
 
   -- LSP misc
-  vim.api.nvim_set_hl(0, "LspCodeLens", { fg = p.color1 })
+  vim.api.nvim_set_hl(0, "LspCodeLens", { fg = p.debug })
   vim.api.nvim_set_hl(0, "LspCodeLensSeparator", { link = "LspCodeLens" })
   vim.api.nvim_set_hl(0, "LspInlayHint", { fg = hint, bg = p.none })
   vim.api.nvim_set_hl(0, "LspInfoBorder", { link = "FloatBorder" })
