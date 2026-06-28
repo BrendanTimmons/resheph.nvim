@@ -46,7 +46,7 @@ function M.apply()
   vim.api.nvim_set_hl(0, "Search", { link = "Visual" })                         -- Search highlighting
   vim.api.nvim_set_hl(0, "CurSearch", { fg = p.c15, bg = p.c13 })               -- Search highlighting
   vim.api.nvim_set_hl(0, "IncSearch", { link = "CurSearch" })                   -- Incremental search
-  vim.api.nvim_set_hl(0, "Substitute", { fg = p.c09, bg = p.c15 })              -- Substitute search term
+  vim.api.nvim_set_hl(0, "Substitute", { fg = p.c15, bg = p.c12 })              -- Substitute search term
   vim.api.nvim_set_hl(0, "StatusLine", { fg = p.c11, bg = p.c08 })              -- Status line
   vim.api.nvim_set_hl(0, "StatusLineNC", { fg = p.c07, bg = p.c08 })            -- Inactive status line
   vim.api.nvim_set_hl(0, "VertSplit", { fg = p.debug })                         -- Window splits
