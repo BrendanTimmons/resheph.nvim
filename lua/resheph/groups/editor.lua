@@ -24,12 +24,12 @@ function M.apply()
   vim.api.nvim_set_hl(0, "Keyword", { fg = p.color2 })    -- Keywords, control flow
   vim.api.nvim_set_hl(0, "Operator", { fg = p.gold })     -- Operators
   vim.api.nvim_set_hl(0, "Constant", { fg = p.color3 })   -- Constants, numbers, enums
-  vim.api.nvim_set_hl(0, "Number", { fg = p.brown })      -- Numbers
-  vim.api.nvim_set_hl(0, "Boolean", { fg = p.brown })     -- Booleans
+  vim.api.nvim_set_hl(0, "Number", { fg = p.color6 })     -- Numbers
+  vim.api.nvim_set_hl(0, "Boolean", { fg = p.color6 })    -- Booleans
   vim.api.nvim_set_hl(0, "Type", { fg = p.color4 })       -- Types, classes
   vim.api.nvim_set_hl(0, "Structure", { fg = p.color4 })  -- Structs, interfaces
   vim.api.nvim_set_hl(0, "Class", { fg = p.color4 })      -- Classes
-  vim.api.nvim_set_hl(0, "String", { fg = p.color5 })     -- Strings, regex, docstrings
+  vim.api.nvim_set_hl(0, "String", { fg = p.color6 })     -- Strings, regex, docstrings
   vim.api.nvim_set_hl(0, "Special", { fg = p.color5 })    -- Special strings, regex
   vim.api.nvim_set_hl(0, "Function", { fg = p.color6 })   -- Functions, methods
   vim.api.nvim_set_hl(0, "Identifier", { fg = p.color6 }) -- Identifiers, builtins
@@ -78,8 +78,8 @@ function M.apply()
   vim.api.nvim_set_hl(0, "Directory", { fg = p.comment })
 
   -- ???
-  vim.api.nvim_set_hl(0, "Conceal", { fg = p.color1 })
-  vim.api.nvim_set_hl(0, "Whitespace", { fg = p.color1 })
+  vim.api.nvim_set_hl(0, "Conceal", { fg = p.debug })
+  vim.api.nvim_set_hl(0, "Whitespace", { fg = p.debug })
 
   -- apply theming
   require("resheph.groups.treesitter").apply()
