@@ -13,18 +13,18 @@ vim.cmd.colorscheme "resheph"
 
 ## examples
 
-Snacks dashboard
+### Snacks dashboard
 
 ![Snacks Dashboard](https://github.com/BrendanTimmons/resheph.nvim/blob/main/examples/snacks.webp)
 
-Typescript
+### Typescript
 
 ![Typescript](https://github.com/BrendanTimmons/resheph.nvim/blob/main/examples/typescript.webp)
 
-Rust
+### Rust
 
 ![Rust](https://github.com/BrendanTimmons/resheph.nvim/blob/main/examples/rust.webp)
 
-Lua
+### Lua
 
 ![Lua](https://github.com/BrendanTimmons/resheph.nvim/blob/main/examples/lua.webp)
