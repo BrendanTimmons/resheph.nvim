@@ -5,12 +5,24 @@ Live and drink. A Caves of Qud inspired theme for NeoVim
 
 Snacks dashboard
 
-![Snacks Dashboard](https://github.com/BrendanTimmons/resheph.nvim/blob/main/examples/snacks-dashboard.webp)
+![Snacks Dashboard](https://github.com/BrendanTimmons/resheph.nvim/blob/main/examples/snacks.webp)
 
 Typescript
 
 ![Typescript](https://github.com/BrendanTimmons/resheph.nvim/blob/main/examples/typescript.webp)
 
-## TODO
+Rust
 
-pretty much everything outside of typescript development.
+![Rust](https://github.com/BrendanTimmons/resheph.nvim/blob/main/examples/rust.webp)
+
+Lua
+
+![Lua](https://github.com/BrendanTimmons/resheph.nvim/blob/main/examples/lua.webp)
+
+## Installation
+
+vim.pack.add({
+  { src = "https://github.com/BrendanTimmons/resheph.nvim" },
+})
+
+vim.cmd.colorscheme "resheph"
