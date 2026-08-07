@@ -1,6 +1,16 @@
 # resheph.nvim
 Live and drink. A Caves of Qud inspired theme for NeoVim
 
+## Installation
+
+```
+vim.pack.add({
+  { src = "https://github.com/BrendanTimmons/resheph.nvim" },
+})
+
+vim.cmd.colorscheme "resheph"
+```
+
 ## examples
 
 Snacks dashboard
@@ -18,11 +28,3 @@ Rust
 Lua
 
 ![Lua](https://github.com/BrendanTimmons/resheph.nvim/blob/main/examples/lua.webp)
-
-## Installation
-
-vim.pack.add({
-  { src = "https://github.com/BrendanTimmons/resheph.nvim" },
-})
-
-vim.cmd.colorscheme "resheph"
